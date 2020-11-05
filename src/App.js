@@ -1,22 +1,13 @@
-import React, { Component } from 'react'
-import Jumbotron from './components/Jumbotron'
+import React from 'react';
+import Jumbotron from './components/Jumbotron';
+import DirectoryContainer from './components/DirectoryContainer';
 
-export default class App extends Component {
-    render() {
-        return (
-            // Jumbotron
+export default function App() {
+    return (
+        <div>
             <Jumbotron />
-            // Sort
-            // <div className="row">
-            //     <div className="col-md-6">
-
-            //     </div>
-            // </div>
-            // Search
-            // Table
-            // <div>
-                
-            // </div>
-        )
-    }
+            <DirectoryContainer/>
+        </div>
+    );
 }
+
