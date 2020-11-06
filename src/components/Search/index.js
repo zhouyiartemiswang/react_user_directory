@@ -1,15 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class Search extends Component {
-    render() {
-        return (
-            <form>
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Search" />
-                    </div>
-                </div>
-            </form>
-        )
-    }
+export default function Search(props) {
+    return (
+        <form>
+            <div className="form-group">
+                <input
+                    onChange={props.handleInputChange}
+                    value={props.value}
+                    name="search"
+                    type="text"
+                    className="form-control"
+                    placeholder="Search for a User"
+                    id="search"
+                />
+                <button onClick={props.handleFormSubmit} className="btn btn-primary">Search</button>
+            </div>
+        </form>
+    )
 }
+
