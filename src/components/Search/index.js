@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Search(props) {
     return (
-        <form>
+        <form onSubmit={props.handleFormSubmit}>
             <div className="form-group">
                 <input
                     onChange={props.handleInputChange}
@@ -10,10 +10,10 @@ export default function Search(props) {
                     name="search"
                     type="text"
                     className="form-control"
-                    placeholder="Search for a User"
+                    placeholder="Search for Name"
                     id="search"
                 />
-                <button onClick={props.handleFormSubmit} className="btn btn-primary">Search</button>
+                <button className="btn btn-primary">Search</button>
             </div>
         </form>
     )
