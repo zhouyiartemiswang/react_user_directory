@@ -14,10 +14,12 @@ export default class DirectoryContainer extends Component {
         sort: "",
     };
 
+    // On page load, display 10 users
     componentDidMount() {
         this.searchUser(10);
     }
 
+    // API call to retrieve users
     searchUser = numResults => {
         API.search(numResults)
             .then(res => {
@@ -29,6 +31,7 @@ export default class DirectoryContainer extends Component {
             .catch(err => console.log(err));
     };
 
+    // Change search state value according to input
     handleInputChange = event => {
         if (event.target.value === "") {
             this.setState({
@@ -41,6 +44,7 @@ export default class DirectoryContainer extends Component {
         }
     };
 
+    // Display sorted table
     handleSortChange = event => {
         this.setState({
             sort: event.target.value
@@ -54,6 +58,7 @@ export default class DirectoryContainer extends Component {
         }
     }
 
+    // Display filtered table
     handleFormSubmit = event => {
         event.preventDefault();
         const filteredArray = this.state.result.filter(
@@ -67,7 +72,7 @@ export default class DirectoryContainer extends Component {
         return (
             <Container>
                 <div className="row">
-                    {/* Search */}
+                    {/* Search Box and Button */}
                     <div className="col-md-6">
                         <Search
                             value={this.state.search}
@@ -75,7 +80,8 @@ export default class DirectoryContainer extends Component {
                             handleFormSubmit={this.handleFormSubmit}
                         />
                     </div >
-                    {/* Sort */}
+
+                    {/* Sort Dropdown */}
                     <div className="col-md-6">
                         <Sort
                             value={this.state.sort}
@@ -84,8 +90,10 @@ export default class DirectoryContainer extends Component {
                     </div>
                 </div>
 
+                {/* Table Header */}
                 <TableRow image="Image" name="Name" phone="Phone" email="Email" age="Age" />
 
+                {/* Table Content Rows */}
                 {this.state.search === "" ?
                     this.state.result.map(user =>
                         <TableRow
