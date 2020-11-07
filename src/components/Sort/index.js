@@ -1,9 +1,10 @@
 import React from 'react';
+import './style.css';
 
 export default function Sort(props) {
 
     return (
-        <form>
+        <form className="form-inline sort-form" > 
             <div className="col-md-6 form-group">
                 <label>Sort by: </label>
                 <select
@@ -11,9 +12,7 @@ export default function Sort(props) {
                     onChange={props.handleSortChange}
                     name="sort"
                     className="form-control">
-                    <option value="bestMatch">Best Match</option>
-                    <option value="firstName">First Name</option>
-                    <option value="lastName">Last Name</option>
+                    <option value="unsorted">Unsorted</option>
                     <option value="age">Age</option>
                 </select>
             </div>

@@ -45,11 +45,9 @@ export default class DirectoryContainer extends Component {
         this.setState({
             sort: event.target.value
         })
-        
-        if (event.target.value === "firstName") {
-            const sortedList = this.state.result.sort((a, b) => {
-                return a.name.first - b.name.first;
-            })
+        if (event.target.value === "unsorted") {
+            console.log("here");
+            this.setState({ search: "" });
         } else if (event.target.value === "age") {
             const sortedList = this.state.table.sort((a, b) => a.dob.age - b.dob.age);
             this.setState({ table: sortedList });

@@ -1,8 +1,9 @@
 import React from 'react';
+import './style.css';
 
 export default function Search(props) {
     return (
-        <form onSubmit={props.handleFormSubmit}>
+        <form onSubmit={props.handleFormSubmit} className="form-inline search-form">
             <div className="form-group">
                 <input
                     value={props.value}
@@ -13,7 +14,7 @@ export default function Search(props) {
                     placeholder="Search for Name"
                     id="search"
                 />
-                <button className="btn btn-primary">Search</button>
+                <button className="btn btn-dark">Search</button>
             </div>
         </form>
     )

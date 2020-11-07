@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './style.css';
 
 export default function TableRow(props) {
     return (
-        <div className="row">
+        <div className="row table-row">
             <div className="col-md-2">
                 {props.image === "Image"? 
                 <span>{props.image}</span> : <img src={props.image} alt="user avatar"/>

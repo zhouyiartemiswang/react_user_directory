@@ -1,0 +1,9 @@
+span {
+    font-family: 'Bitter', serif;
+}
+
+.table-row {
+    text-align: center;
+    padding: 1.5vw;
+    border-bottom: solid 1px black;
+}
