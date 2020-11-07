@@ -10,34 +10,24 @@ export default class DirectoryContainer extends Component {
     state = {
         result: [],
         table: [],
-        search: ""
+        search: "",
+        sort: "",
     };
 
     componentDidMount() {
-        // this.searchUser(10);
-        API.search(10)
+        this.searchUser(10);
+    }
+
+    searchUser = numResults => {
+        API.search(numResults)
             .then(res => {
                 this.setState({
                     result: res.data.results,
                     table: res.data.results
-                })
-                console.log(this.state.table);
+                });
             })
             .catch(err => console.log(err));
-    }
-
-    // searchUser = numResults => {
-    //     API.search(numResults)
-    //     .then(res => {
-    //         this.setState({ 
-    //             result: res.data.results,
-    //             table: res.data.results
-    //         })  
-    //         console.log(this.state.table);
-    //     })
-    //     .catch(err => console.log(err));
-    //     console.log(this.state.result);
-    // };
+    };
 
     handleInputChange = event => {
         if (event.target.value === "") {
@@ -50,6 +40,21 @@ export default class DirectoryContainer extends Component {
             });
         }
     };
+
+    handleSortChange = event => {
+        this.setState({
+            sort: event.target.value
+        })
+        
+        if (event.target.value === "firstName") {
+            const sortedList = this.state.result.sort((a, b) => {
+                return a.name.first - b.name.first;
+            })
+        } else if (event.target.value === "age") {
+            const sortedList = this.state.table.sort((a, b) => a.dob.age - b.dob.age);
+            this.setState({ table: sortedList });
+        }
+    }
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -74,9 +79,10 @@ export default class DirectoryContainer extends Component {
                     </div >
                     {/* Sort */}
                     <div className="col-md-6">
-                        <Sort>
-
-                        </Sort>
+                        <Sort
+                            value={this.state.sort}
+                            handleSortChange={this.handleSortChange}
+                        />
                     </div>
                 </div>
 
@@ -102,7 +108,6 @@ export default class DirectoryContainer extends Component {
                             age={user.dob.age}
                         />)
                 }
-
             </Container>
         );
     }

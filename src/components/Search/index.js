@@ -5,8 +5,8 @@ export default function Search(props) {
         <form onSubmit={props.handleFormSubmit}>
             <div className="form-group">
                 <input
-                    onChange={props.handleInputChange}
                     value={props.value}
+                    onChange={props.handleInputChange}
                     name="search"
                     type="text"
                     className="form-control"
