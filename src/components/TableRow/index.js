@@ -5,7 +5,7 @@ export default function TableRow(props) {
         <div className="row">
             <div className="col-md-2">
                 {props.image === "Image"? 
-                <span>{props.image}</span> : <img src={props.image}/>
+                <span>{props.image}</span> : <img src={props.image} alt="user avatar"/>
                 }
             </div>
             <div className="col-md-2">

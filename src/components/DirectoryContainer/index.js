@@ -9,35 +9,55 @@ export default class DirectoryContainer extends Component {
 
     state = {
         result: [],
+        table: [],
         search: ""
     };
 
     componentDidMount() {
-        this.searchUser(10);
-    }
-
-    searchUser = numResults => {
-        API.search(numResults)
+        // this.searchUser(10);
+        API.search(10)
             .then(res => {
-                this.setState({ result: res.data.results })
-                // console.log(this.state.result);
+                this.setState({
+                    result: res.data.results,
+                    table: res.data.results
+                })
+                console.log(this.state.table);
             })
             .catch(err => console.log(err));
-    };
+    }
+
+    // searchUser = numResults => {
+    //     API.search(numResults)
+    //     .then(res => {
+    //         this.setState({ 
+    //             result: res.data.results,
+    //             table: res.data.results
+    //         })  
+    //         console.log(this.state.table);
+    //     })
+    //     .catch(err => console.log(err));
+    //     console.log(this.state.result);
+    // };
 
     handleInputChange = event => {
-        this.setState({
-            search: event.target.value
-        });
-        // console.log(this.state.search);
+        if (event.target.value === "") {
+            this.setState({
+                search: ""
+            });
+        } else {
+            this.setState({
+                search: event.target.value
+            });
+        }
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const filteredArray = this.state.result.filter(user =>
-            user.name.first.includes(this.state.search) ||
-            user.name.last.includes(this.state.search));
-        this.setState({ result: filteredArray });
+        const filteredArray = this.state.result.filter(
+            user =>
+                user.name.first.includes(this.state.search) ||
+                user.name.last.includes(this.state.search));
+        this.setState({ table: filteredArray });
     };
 
     render() {
@@ -61,14 +81,27 @@ export default class DirectoryContainer extends Component {
                 </div>
 
                 <TableRow image="Image" name="Name" phone="Phone" email="Email" age="Age" />
-                {this.state.result.map(user =>
-                    <TableRow
-                        image={user.picture.thumbnail}
-                        name={user.name.first + " " + user.name.last}
-                        phone={user.phone}
-                        email={user.email}
-                        age={user.dob.age}
-                    />)}
+
+                {this.state.search === "" ?
+                    this.state.result.map(user =>
+                        <TableRow
+                            key={user.username}
+                            image={user.picture.thumbnail}
+                            name={user.name.first + " " + user.name.last}
+                            phone={user.phone}
+                            email={user.email}
+                            age={user.dob.age}
+                        />) :
+                    this.state.table.map(user =>
+                        <TableRow
+                            key={user.username}
+                            image={user.picture.thumbnail}
+                            name={user.name.first + " " + user.name.last}
+                            phone={user.phone}
+                            email={user.email}
+                            age={user.dob.age}
+                        />)
+                }
 
             </Container>
         );
