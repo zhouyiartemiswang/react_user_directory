@@ -26,10 +26,14 @@ npm install
 
 ## Usage
 
+* On page loading
+![On page loading](./public/img/home.png)
+
 * Enter and click on `Search` to search a user by name
+![Search by Name](./public/img/search_by_name.png)
 
 * Click on `Sort by` dropdown, choose `Age` to sort by age
-
+![Sort by Age](./public/img/sort_by_age.png)
 
 [Click here](https://react-user-directory-app.herokuapp.com/) for deployed link. 
 
